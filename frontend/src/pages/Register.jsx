@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Mail, Lock, User, Shield, AlertCircle, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { GoogleLogin } from '@react-oauth/google';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -13,8 +14,21 @@ const Register = () => {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { register } = useAuth();
+  const { register, googleLogin } = useAuth();
   const navigate = useNavigate();
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    setError('');
+    setLoading(true);
+    try {
+      await googleLogin(credentialResponse.credential);
+      navigate('/');
+    } catch (err) {
+      setError(err.response?.data?.message || 'Google authentication failed.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +46,7 @@ const Register = () => {
 
   return (
     <div className="max-w-2xl mx-auto mt-20 mb-20 px-4">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         className="luxury-card !p-12 shadow-2xl overflow-visible"
@@ -41,10 +55,10 @@ const Register = () => {
           <h2 className="text-5xl font-black mb-4 tracking-tighter">Join <span className="text-primary-500">HostelOps</span></h2>
           <p className="font-medium text-slate-500">Secure registration for students and admins.</p>
         </div>
-        
+
         <AnimatePresence mode='wait'>
           {error && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
@@ -117,29 +131,27 @@ const Register = () => {
               <button
                 type="button"
                 onClick={() => setFormData({ ...formData, role: 'student' })}
-                className={`p-6 rounded-3xl border-2 transition-all flex flex-col items-center gap-3 ${
-                  formData.role === 'student' 
-                  ? 'bg-primary-500/10 border-primary-500 text-primary-600 shadow-[0_10px_30px_rgba(14,165,233,0.2)]' 
+                className={`p-6 rounded-3xl border-2 transition-all flex flex-col items-center gap-3 ${formData.role === 'student'
+                  ? 'bg-primary-500/10 border-primary-500 text-primary-600 shadow-[0_10px_30px_rgba(14,165,233,0.2)]'
                   : 'bg-slate-50 dark:bg-slate-800/30 border-transparent text-slate-400 grayscale'
-                }`}
+                  }`}
               >
                 <div className={`p-3 rounded-2xl ${formData.role === 'student' ? 'bg-primary-500 text-white' : 'bg-slate-200 dark:bg-slate-700'}`}>
-                   <User className="w-6 h-6" />
+                  <User className="w-6 h-6" />
                 </div>
                 <span className="font-black text-sm uppercase tracking-widest">Resident</span>
               </button>
-              
+
               <button
                 type="button"
                 onClick={() => setFormData({ ...formData, role: 'admin' })}
-                className={`p-6 rounded-3xl border-2 transition-all flex flex-col items-center gap-3 ${
-                  formData.role === 'admin' 
-                  ? 'bg-primary-500/10 border-primary-500 text-primary-600 shadow-[0_10px_30px_rgba(14,165,233,0.2)]' 
+                className={`p-6 rounded-3xl border-2 transition-all flex flex-col items-center gap-3 ${formData.role === 'admin'
+                  ? 'bg-primary-500/10 border-primary-500 text-primary-600 shadow-[0_10px_30px_rgba(14,165,233,0.2)]'
                   : 'bg-slate-50 dark:bg-slate-800/30 border-transparent text-slate-400 grayscale'
-                }`}
+                  }`}
               >
                 <div className={`p-3 rounded-2xl ${formData.role === 'admin' ? 'bg-primary-500 text-white' : 'bg-slate-200 dark:bg-slate-700'}`}>
-                   <Shield className="w-6 h-6" />
+                  <Shield className="w-6 h-6" />
                 </div>
                 <span className="font-black text-sm uppercase tracking-widest">Maintainer</span>
               </button>
@@ -157,8 +169,28 @@ const Register = () => {
           </div>
         </form>
 
+        <div className="mt-8 flex flex-col items-center gap-6">
+          <div className="w-full flex items-center gap-4 text-slate-400">
+            <div className="h-px flex-1 bg-slate-100 dark:bg-slate-800"></div>
+            <span className="text-xs font-bold uppercase tracking-widest">or continue with</span>
+            <div className="h-px flex-1 bg-slate-100 dark:bg-slate-800"></div>
+          </div>
+
+          <div className="w-full flex justify-center">
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={() => setError('Google Login Failed')}
+              useOneTap
+              theme="filled_black"
+              shape="pill"
+              size="large"
+              width="100%"
+            />
+          </div>
+        </div>
+
         <div className="mt-12 pt-8 border-t border-slate-100 dark:border-slate-800 text-center">
-           <p className="text-slate-500 font-medium">
+          <p className="text-slate-500 font-medium">
             Already registered?{' '}
             <Link to="/login" className="text-primary-500 font-black hover:underline underline-offset-4 decoration-2">
               Access Vault
@@ -166,7 +198,7 @@ const Register = () => {
           </p>
         </div>
       </motion.div>
-    </div>
+    </div >
   );
 };
 
