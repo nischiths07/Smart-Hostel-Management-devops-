@@ -7,9 +7,11 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Configure axios Base URL to relative path for Nginx or use proxy
-  // In development, Vite handles /api proxy
-  // In production, Nginx handles it
+  // Configure axios Base URL
+  // In development, Vite handles /api proxy (target: http://localhost:5000)
+  // In production (Docker), we connect directly to the backend port
+  const API_URL = import.meta.env.VITE_API_URL || (window.location.hostname === 'localhost' ? 'http://localhost:5000' : '');
+  axios.defaults.baseURL = API_URL;
 
   useEffect(() => {
     const token = localStorage.getItem('token');
