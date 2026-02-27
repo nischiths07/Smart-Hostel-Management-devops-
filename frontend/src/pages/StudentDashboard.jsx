@@ -84,7 +84,7 @@ const StudentDashboard = () => {
       {/* Header Stat Area */}
       <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
         <div>
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="text-5xl font-black tracking-tighter mb-4"
@@ -96,12 +96,12 @@ const StudentDashboard = () => {
               <div className="w-2 h-2 rounded-full bg-emerald-500"></div> System Active
             </div>
             <div className="flex items-center gap-2 text-slate-500 font-bold uppercase tracking-widest text-[10px]">
-               {complaints.length} Tickets Logged
+              {complaints.length} Tickets Logged
             </div>
           </div>
         </div>
-        
-        <button 
+
+        <button
           onClick={() => setShowForm(!showForm)}
           className={`btn-primary flex items-center gap-3 transition-all duration-500 ${showForm ? '!bg-slate-800 !shadow-none' : ''}`}
         >
@@ -131,7 +131,7 @@ const StudentDashboard = () => {
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs font-black uppercase tracking-widest text-slate-400">Department</label>
-                  <select 
+                  <select
                     className="input-field appearance-none"
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
@@ -158,28 +158,28 @@ const StudentDashboard = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                   <label className="text-xs font-black uppercase tracking-widest text-slate-400">Evidence / Photo (Optional)</label>
-                   <div className="relative group h-[124px]">
-                      <input 
-                        type="file" 
-                        accept="image/*"
-                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                        onChange={(e) => setSelectedImage(e.target.files[0])}
-                      />
-                      <div className="input-field h-full flex flex-col items-center justify-center border-dashed gap-2 group-hover:border-primary-500 transition-colors">
-                         {selectedImage ? (
-                           <>
-                             <CheckCircle className="w-8 h-8 text-emerald-500" />
-                             <span className="text-xs font-bold text-slate-600">{selectedImage.name}</span>
-                           </>
-                         ) : (
-                           <>
-                             <ImageIcon className="w-8 h-8 text-slate-300" />
-                             <span className="text-xs font-bold text-slate-400">Select Issue Image</span>
-                           </>
-                         )}
-                      </div>
-                   </div>
+                  <label className="text-xs font-black uppercase tracking-widest text-slate-400">Evidence / Photo (Optional)</label>
+                  <div className="relative group h-[124px]">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                      onChange={(e) => setSelectedImage(e.target.files[0])}
+                    />
+                    <div className="input-field h-full flex flex-col items-center justify-center border-dashed gap-2 group-hover:border-primary-500 transition-colors">
+                      {selectedImage ? (
+                        <>
+                          <CheckCircle className="w-8 h-8 text-emerald-500" />
+                          <span className="text-xs font-bold text-slate-600">{selectedImage.name}</span>
+                        </>
+                      ) : (
+                        <>
+                          <ImageIcon className="w-8 h-8 text-slate-300" />
+                          <span className="text-xs font-bold text-slate-400">Select Issue Image</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -192,11 +192,10 @@ const StudentDashboard = () => {
                         key={p}
                         type="button"
                         onClick={() => setFormData({ ...formData, priority: p })}
-                        className={`px-5 py-2.5 rounded-xl text-xs font-black tracking-widest transition-all ${
-                          formData.priority === p 
-                          ? 'bg-slate-100 dark:bg-white text-slate-900 dark:text-slate-900 shadow-xl scale-110' 
-                          : 'bg-white dark:bg-slate-800 text-slate-500 border border-slate-200 dark:border-slate-700'
-                        }`}
+                        className={`px-5 py-2.5 rounded-xl text-xs font-black tracking-widest transition-all ${formData.priority === p
+                            ? 'bg-slate-100 dark:bg-white text-slate-900 dark:text-slate-900 shadow-xl scale-110'
+                            : 'bg-white dark:bg-slate-800 text-slate-500 border border-slate-200 dark:border-slate-700'
+                          }`}
                       >
                         {p}
                       </button>
@@ -220,20 +219,20 @@ const StudentDashboard = () => {
           <h2 className="text-2xl font-black uppercase tracking-widest flex items-center gap-3 mb-8">
             <History className="w-6 h-6 text-primary-500" /> Active Registry
           </h2>
-          
+
           {loading ? (
             <div className="text-center py-20 luxury-card animate-pulse">Scanning server registry...</div>
           ) : complaints.length === 0 ? (
             <div className="luxury-card text-center py-32 border-dashed border-2">
-               <div className="bg-slate-50 dark:bg-slate-800/50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                 <FilterX className="w-10 h-10 text-slate-300" />
-               </div>
-               <h3 className="text-2xl font-black mb-2 uppercase tracking-tighter">Zero Faults Detected</h3>
-               <p className="text-slate-500 font-medium">Your current environment is operating at 100% capacity.</p>
+              <div className="bg-slate-50 dark:bg-slate-800/50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <FilterX className="w-10 h-10 text-slate-300" />
+              </div>
+              <h3 className="text-2xl font-black mb-2 uppercase tracking-tighter">Zero Faults Detected</h3>
+              <p className="text-slate-500 font-medium">Your current environment is operating at 100% capacity.</p>
             </div>
           ) : (
             complaints.map((c, idx) => (
-              <motion.div 
+              <motion.div
                 layout
                 key={c._id}
                 initial={{ opacity: 0, y: 20 }}
@@ -251,7 +250,7 @@ const StudentDashboard = () => {
                   <div className="flex items-center gap-3">
                     {c.isConfirmedByStudent && (
                       <div className="flex items-center gap-1.5 px-3 py-1 bg-emerald-500 text-white text-[10px] font-black uppercase tracking-widest rounded-full">
-                         <CheckCircle className="w-3 h-3" /> Confirmed
+                        <CheckCircle className="w-3 h-3" /> Confirmed
                       </div>
                     )}
                     <span className={`badge-status shadow-none border ${statusThemes[c.status]}`}>
@@ -259,39 +258,39 @@ const StudentDashboard = () => {
                     </span>
                   </div>
                 </div>
-                
+
                 <div className={`${c.imageUrl ? 'grid md:grid-cols-3 gap-6 mb-8' : ''}`}>
                   <div className={`${c.imageUrl ? 'md:col-span-2' : ''}`}>
                     <p className="text-slate-600 dark:text-slate-400 font-medium leading-relaxed">{c.description}</p>
                   </div>
                   {c.imageUrl && (
                     <div className="rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-lg h-32 md:h-full min-h-[120px]">
-                      <img 
-                        src={`http://localhost:5000${c.imageUrl}`} 
-                        alt="Issue Evidence" 
+                      <img
+                        src={c.imageUrl}
+                        alt="Issue Evidence"
                         className="w-full h-full object-cover"
                         onError={(e) => { e.target.style.display = 'none'; }}
                       />
                     </div>
                   )}
                 </div>
-                
+
                 <div className="flex flex-wrap items-center justify-between pt-8 border-t border-slate-100 dark:border-slate-800 gap-4">
                   <div className="flex gap-8">
                     <div className="space-y-1">
-                       <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 block">Logged</span>
-                       <span className="text-xs font-bold text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                         <Clock className="w-3 h-3" /> {new Date(c.createdAt).toLocaleDateString()}
-                       </span>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 block">Logged</span>
+                      <span className="text-xs font-bold text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                        <Clock className="w-3 h-3" /> {new Date(c.createdAt).toLocaleDateString()}
+                      </span>
                     </div>
                     <div className="space-y-1">
-                       <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 block">Priority</span>
-                       <span className={`text-xs font-black flex items-center gap-1.5 ${priorityThemes[c.priority]}`}>
-                         <AlertTriangle className="w-3 h-3" /> {c.priority} Level
-                       </span>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 block">Priority</span>
+                      <span className={`text-xs font-black flex items-center gap-1.5 ${priorityThemes[c.priority]}`}>
+                        <AlertTriangle className="w-3 h-3" /> {c.priority} Level
+                      </span>
                     </div>
                   </div>
-                  
+
                   <div className="flex flex-col gap-4">
                     {c.adminRemarks && (
                       <div className="bg-primary-50/50 dark:bg-primary-950/20 p-5 rounded-2xl border border-primary-100/50 dark:border-primary-900/30 flex items-start gap-4">
@@ -302,13 +301,13 @@ const StudentDashboard = () => {
                         </div>
                       </div>
                     )}
-                    
+
                     {c.status === 'Resolved' && !c.isConfirmedByStudent && (
-                      <button 
+                      <button
                         onClick={() => handleConfirm(c._id)}
                         className="py-3 px-8 bg-emerald-600 text-white rounded-xl text-xs font-black uppercase tracking-widest shadow-xl shadow-emerald-500/20 hover:scale-105 transition-all"
                       >
-                         Confirm Resolution
+                        Confirm Resolution
                       </button>
                     )}
                   </div>
@@ -320,35 +319,35 @@ const StudentDashboard = () => {
 
         {/* Sidebar Info/Rules */}
         <div className="space-y-8">
-           <div className="luxury-card !bg-amber-500/5 dark:!bg-amber-500/10 border-amber-200/50 dark:border-amber-900/30">
-              <h4 className="text-xl font-black uppercase tracking-tighter flex items-center gap-3 mb-6 text-amber-700 dark:text-amber-400">
-                <HelpCircle className="w-6 h-6" /> Protocols
-              </h4>
-              <ul className="space-y-4">
-                {[
-                  "Photos of evidence speed up processing.",
-                  "High priority is for life-safety issues only.",
-                  "After resolution, please confirm the fix.",
-                  "Maintenance windows are 9AM - 5PM Daily."
-                ].map((rule, idx) => (
-                  <li key={idx} className="flex gap-3 text-sm font-bold text-amber-800 dark:text-amber-200">
-                    <span className="text-amber-400 font-black">0{idx+1}</span>
-                    {rule}
-                  </li>
-                ))}
-              </ul>
-           </div>
+          <div className="luxury-card !bg-amber-500/5 dark:!bg-amber-500/10 border-amber-200/50 dark:border-amber-900/30">
+            <h4 className="text-xl font-black uppercase tracking-tighter flex items-center gap-3 mb-6 text-amber-700 dark:text-amber-400">
+              <HelpCircle className="w-6 h-6" /> Protocols
+            </h4>
+            <ul className="space-y-4">
+              {[
+                "Photos of evidence speed up processing.",
+                "High priority is for life-safety issues only.",
+                "After resolution, please confirm the fix.",
+                "Maintenance windows are 9AM - 5PM Daily."
+              ].map((rule, idx) => (
+                <li key={idx} className="flex gap-3 text-sm font-bold text-amber-800 dark:text-amber-200">
+                  <span className="text-amber-400 font-black">0{idx + 1}</span>
+                  {rule}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-           <div className="luxury-card overflow-hidden !p-0">
-              <div className="bg-primary-600 p-8 text-white">
-                 <h4 className="text-2xl font-black tracking-tighter uppercase mb-2">Help Center</h4>
-                 <p className="text-white/70 text-sm font-bold">24/7 Concierge Support</p>
-              </div>
-              <div className="p-8 space-y-4">
-                 <button className="w-full py-4 bg-slate-50 dark:bg-slate-800 rounded-2xl text-sm font-black uppercase tracking-widest hover:bg-slate-100 transition-colors">Call Support</button>
-                 <button className="w-full py-4 border-2 border-slate-100 dark:border-slate-800 rounded-2xl text-sm font-black uppercase tracking-widest hover:border-slate-200 transition-colors">Documentation</button>
-              </div>
-           </div>
+          <div className="luxury-card overflow-hidden !p-0">
+            <div className="bg-primary-600 p-8 text-white">
+              <h4 className="text-2xl font-black tracking-tighter uppercase mb-2">Help Center</h4>
+              <p className="text-white/70 text-sm font-bold">24/7 Concierge Support</p>
+            </div>
+            <div className="p-8 space-y-4">
+              <button className="w-full py-4 bg-slate-50 dark:bg-slate-800 rounded-2xl text-sm font-black uppercase tracking-widest hover:bg-slate-100 transition-colors">Call Support</button>
+              <button className="w-full py-4 border-2 border-slate-100 dark:border-slate-800 rounded-2xl text-sm font-black uppercase tracking-widest hover:border-slate-200 transition-colors">Documentation</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

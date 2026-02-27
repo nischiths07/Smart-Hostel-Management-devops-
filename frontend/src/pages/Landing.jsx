@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Zap, Bell, Clock, Building2, UserCheck, Scale, ClipboardList } from 'lucide-react';
-import sahyadri from "../../public/sahyadri-.jpg";
+const sahyadri = "/sahyadri-.jpg";
 
 const Landing = () => {
   const rules = [

@@ -22,9 +22,8 @@ HostelOps is a centralized digital platform for managing maintenance complaints 
 
 ## 📁 Project Structure
 - `backend/`: Express server and MongoDB models.
-- `frontend/`: React single-page application.
-- `nginx/`: Configuration for the gateway reverse proxy.
-- `docker-compose.yml`: Orchestration for all services.
+- `frontend/`: React SPA with integrated Nginx production config.
+- `docker-compose.yml`: Global orchestration for all services.
 
 ## 🔑 Key Features
 - **Student Dashboard**: Submit complaints with priority levels and track status.

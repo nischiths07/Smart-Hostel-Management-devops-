@@ -19,7 +19,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/complaints', complaintRoutes);
 
 // Health Check
-app.get('/health', (req, res) => res.json({ status: 'OK', message: 'HostelOps Backend is running' }));
+app.get('/api/health', (req, res) => res.json({ status: 'OK', message: 'HostelOps Backend is running' }));
 
 mongoose.connect(MONGO_URI)
     .then(() => {

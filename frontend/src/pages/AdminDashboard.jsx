@@ -60,7 +60,7 @@ const AdminDashboard = () => {
       {/* Admin Title Area */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-20 gap-8">
         <div className="text-center md:text-left">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="flex items-center gap-3 justify-center md:justify-start mb-4"
@@ -73,51 +73,51 @@ const AdminDashboard = () => {
 
         {/* Filters Panel */}
         <div className="glass !p-4 !rounded-[24px] flex flex-wrap gap-4 items-center shadow-2xl">
-           <div className="p-3 bg-slate-100 dark:bg-slate-800 rounded-xl">
-              <Filter className="w-5 h-5 text-primary-500" />
-           </div>
-           
-           <select 
-             className="bg-transparent border-none text-sm font-black uppercase tracking-widest px-4 focus:ring-0 cursor-pointer"
-             value={filterStatus}
-             onChange={(e) => setFilterStatus(e.target.value)}
-           >
-             <option value="">All Statuses</option>
-             <option value="Pending">Pending</option>
-             <option value="In Progress">In Progress</option>
-             <option value="Resolved">Resolved</option>
-             <option value="Rejected">Rejected</option>
-           </select>
+          <div className="p-3 bg-slate-100 dark:bg-slate-800 rounded-xl">
+            <Filter className="w-5 h-5 text-primary-500" />
+          </div>
 
-           <div className="w-px h-6 bg-slate-200 dark:bg-slate-700 hidden md:block"></div>
+          <select
+            className="bg-transparent border-none text-sm font-black uppercase tracking-widest px-4 focus:ring-0 cursor-pointer"
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value)}
+          >
+            <option value="">All Statuses</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+            <option value="Rejected">Rejected</option>
+          </select>
 
-           <select 
-             className="bg-transparent border-none text-sm font-black uppercase tracking-widest px-4 focus:ring-0 cursor-pointer"
-             value={filterCategory}
-             onChange={(e) => setFilterCategory(e.target.value)}
-           >
-             <option value="">All Categories</option>
-             <option value="Plumbing">Plumbing</option>
-             <option value="Electrical">Electrical</option>
-             <option value="Cleaning">Cleaning</option>
-             <option value="Carpentry">Carpentry</option>
-             <option value="Other">Other</option>
-           </select>
+          <div className="w-px h-6 bg-slate-200 dark:bg-slate-700 hidden md:block"></div>
 
-           <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl gap-1">
-              <button 
-                onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-white dark:bg-slate-700 shadow-sm' : 'text-slate-400'}`}
-              >
-                <LayoutGrid className="w-4 h-4" />
-              </button>
-              <button 
-                onClick={() => setViewMode('list')}
-                className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-white dark:bg-slate-700 shadow-sm' : 'text-slate-400'}`}
-              >
-                <List className="w-4 h-4" />
-              </button>
-           </div>
+          <select
+            className="bg-transparent border-none text-sm font-black uppercase tracking-widest px-4 focus:ring-0 cursor-pointer"
+            value={filterCategory}
+            onChange={(e) => setFilterCategory(e.target.value)}
+          >
+            <option value="">All Categories</option>
+            <option value="Plumbing">Plumbing</option>
+            <option value="Electrical">Electrical</option>
+            <option value="Cleaning">Cleaning</option>
+            <option value="Carpentry">Carpentry</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl gap-1">
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`p-2 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-white dark:bg-slate-700 shadow-sm' : 'text-slate-400'}`}
+            >
+              <LayoutGrid className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setViewMode('list')}
+              className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-white dark:bg-slate-700 shadow-sm' : 'text-slate-400'}`}
+            >
+              <List className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -132,7 +132,7 @@ const AdminDashboard = () => {
           </div>
         ) : (
           complaints.map((c, idx) => (
-            <motion.div 
+            <motion.div
               layout
               key={c._id}
               initial={{ opacity: 0, scale: 0.9 }}
@@ -148,7 +148,7 @@ const AdminDashboard = () => {
                     </div>
                     {c.isConfirmedByStudent && (
                       <div className="flex items-center gap-1.5 px-3 py-1 bg-emerald-500 text-white text-[10px] font-black uppercase tracking-widest rounded-full">
-                         <CheckCircle className="w-3 h-3" /> Confirmed
+                        <CheckCircle className="w-3 h-3" /> Confirmed
                       </div>
                     )}
                   </div>
@@ -158,12 +158,12 @@ const AdminDashboard = () => {
                 <div className="mb-6">
                   <h3 className="text-2xl font-black mb-2 leading-tight group-hover:text-primary-500 transition-colors">{c.title}</h3>
                   <div className="flex items-center flex-wrap gap-4">
-                     <div className="px-3 py-1 bg-slate-50 dark:bg-slate-800 rounded-lg text-[10px] font-black uppercase tracking-widest text-slate-500">
-                        {c.category}
-                     </div>
-                     <div className={`px-3 py-1 bg-slate-50 dark:bg-slate-800 rounded-lg text-[10px] font-black uppercase tracking-widest ${c.priority === 'High' ? 'text-red-500' : 'text-slate-400'}`}>
-                        {c.priority} Priority
-                     </div>
+                    <div className="px-3 py-1 bg-slate-50 dark:bg-slate-800 rounded-lg text-[10px] font-black uppercase tracking-widest text-slate-500">
+                      {c.category}
+                    </div>
+                    <div className={`px-3 py-1 bg-slate-50 dark:bg-slate-800 rounded-lg text-[10px] font-black uppercase tracking-widest ${c.priority === 'High' ? 'text-red-500' : 'text-slate-400'}`}>
+                      {c.priority} Priority
+                    </div>
                   </div>
                 </div>
 
@@ -173,9 +173,9 @@ const AdminDashboard = () => {
                   </p>
                   {c.imageUrl && (
                     <div className="rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-md h-32 md:h-full min-h-[100px]">
-                      <img 
-                        src={`http://localhost:5000${c.imageUrl}`} 
-                        alt="Issue" 
+                      <img
+                        src={c.imageUrl}
+                        alt="Issue"
                         className="w-full h-full object-cover"
                         onError={(e) => { e.target.style.display = 'none'; }}
                       />
@@ -184,13 +184,13 @@ const AdminDashboard = () => {
                 </div>
 
                 <div className="flex items-center gap-3 mb-8 p-4 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-100 dark:border-slate-800">
-                   <div className="w-10 h-10 rounded-full bg-primary-600 flex items-center justify-center text-white text-sm font-bold">
-                      {c.student?.name[0]}
-                   </div>
-                   <div>
-                      <p className="text-xs font-bold leading-none">{c.student?.name}</p>
-                      <p className="text-[10px] font-medium text-slate-400">{c.student?.email}</p>
-                   </div>
+                  <div className="w-10 h-10 rounded-full bg-primary-600 flex items-center justify-center text-white text-sm font-bold">
+                    {c.student?.name ? c.student.name[0] : '?'}
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold leading-none">{c.student?.name || 'Unknown Student'}</p>
+                    <p className="text-[10px] font-medium text-slate-400">{c.student?.email}</p>
+                  </div>
                 </div>
               </div>
 
@@ -201,9 +201,8 @@ const AdminDashboard = () => {
                     <button
                       key={s}
                       onClick={() => setUpdatingId(updatingId === c._id ? null : c._id)}
-                      className={`py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
-                        c.status === s ? 'bg-primary-600 text-white shadow-lg' : 'bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200'
-                      }`}
+                      className={`py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${c.status === s ? 'bg-primary-600 text-white shadow-lg' : 'bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200'
+                        }`}
                     >
                       {s}
                     </button>
@@ -212,7 +211,7 @@ const AdminDashboard = () => {
 
                 <AnimatePresence>
                   {updatingId === c._id && (
-                    <motion.div 
+                    <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -225,15 +224,15 @@ const AdminDashboard = () => {
                         onChange={(e) => setRemarks(e.target.value)}
                       />
                       <div className="flex gap-2">
-                        <button 
-                           onClick={() => updateStatus(c._id, 'Resolved')}
-                           className="flex-grow bg-emerald-600 text-white py-3 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-xl shadow-emerald-500/20"
+                        <button
+                          onClick={() => updateStatus(c._id, 'Resolved')}
+                          className="flex-grow bg-emerald-600 text-white py-3 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-xl shadow-emerald-500/20"
                         >
                           Confirm Fix
                         </button>
-                        <button 
-                           onClick={() => setUpdatingId(null)}
-                           className="px-4 bg-slate-200 dark:bg-slate-700 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest"
+                        <button
+                          onClick={() => setUpdatingId(null)}
+                          className="px-4 bg-slate-200 dark:bg-slate-700 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest"
                         >
                           Cancel
                         </button>
@@ -249,20 +248,20 @@ const AdminDashboard = () => {
 
       {/* Admin Rules Sidebar / Bottom Bar */}
       <footer className="mt-32 pt-20 border-t border-slate-100 dark:border-slate-800">
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div>
-               <h5 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary-600 mb-6">Service Level Agreement</h5>
-               <p className="text-sm font-medium text-slate-500 leading-relaxed">Ensure all 'High' priority tickets are evaluated within 120 minutes of logging. Maintain 98% resolution accuracy.</p>
-            </div>
-            <div>
-               <h5 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary-600 mb-6">Security Protocol</h5>
-               <p className="text-sm font-medium text-slate-500 leading-relaxed">Remarks are visible to residents. Use professional language and specific instructions for follow-up.</p>
-            </div>
-            <div>
-               <h5 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary-600 mb-6">Reporting Console</h5>
-               <p className="text-sm font-medium text-slate-500 leading-relaxed">Export weekly maintenance logs every Sunday before system maintenance (02:00 AM UTC).</p>
-            </div>
-         </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div>
+            <h5 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary-600 mb-6">Service Level Agreement</h5>
+            <p className="text-sm font-medium text-slate-500 leading-relaxed">Ensure all 'High' priority tickets are evaluated within 120 minutes of logging. Maintain 98% resolution accuracy.</p>
+          </div>
+          <div>
+            <h5 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary-600 mb-6">Security Protocol</h5>
+            <p className="text-sm font-medium text-slate-500 leading-relaxed">Remarks are visible to residents. Use professional language and specific instructions for follow-up.</p>
+          </div>
+          <div>
+            <h5 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary-600 mb-6">Reporting Console</h5>
+            <p className="text-sm font-medium text-slate-500 leading-relaxed">Export weekly maintenance logs every Sunday before system maintenance (02:00 AM UTC).</p>
+          </div>
+        </div>
       </footer>
     </div>
   );
