@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Filter, Search, CheckCircle2, Clock, XCircle, MessageSquare, ShieldAlert, ChevronRight, LayoutGrid, List } from 'lucide-react';
+import { Filter, Search, CheckCircle2, Clock, XCircle, MessageSquare, ShieldAlert, ChevronRight, LayoutGrid, List, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const AdminDashboard = () => {
@@ -142,8 +142,15 @@ const AdminDashboard = () => {
             >
               <div className="flex-grow">
                 <div className="flex justify-between items-start mb-6">
-                  <div className={`badge-status border shrink-0 ${statusColors[c.status]}`}>
-                    {c.status}
+                  <div className="flex items-center gap-3">
+                    <div className={`badge-status border shrink-0 ${statusColors[c.status]}`}>
+                      {c.status}
+                    </div>
+                    {c.isConfirmedByStudent && (
+                      <div className="flex items-center gap-1.5 px-3 py-1 bg-emerald-500 text-white text-[10px] font-black uppercase tracking-widest rounded-full">
+                         <CheckCircle className="w-3 h-3" /> Confirmed
+                      </div>
+                    )}
                   </div>
                   <span className="text-[10px] font-black uppercase tracking-widest text-slate-300">#{c._id.slice(-6)}</span>
                 </div>
@@ -160,9 +167,21 @@ const AdminDashboard = () => {
                   </div>
                 </div>
 
-                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-8 leading-relaxed line-clamp-3">
-                  {c.description}
-                </p>
+                <div className={`${c.imageUrl ? 'grid md:grid-cols-2 gap-4 mb-6' : ''}`}>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm font-medium leading-relaxed line-clamp-4">
+                    {c.description}
+                  </p>
+                  {c.imageUrl && (
+                    <div className="rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-md h-32 md:h-full min-h-[100px]">
+                      <img 
+                        src={`http://localhost:5000${c.imageUrl}`} 
+                        alt="Issue" 
+                        className="w-full h-full object-cover"
+                        onError={(e) => { e.target.style.display = 'none'; }}
+                      />
+                    </div>
+                  )}
+                </div>
 
                 <div className="flex items-center gap-3 mb-8 p-4 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-100 dark:border-slate-800">
                    <div className="w-10 h-10 rounded-full bg-primary-600 flex items-center justify-center text-white text-sm font-bold">

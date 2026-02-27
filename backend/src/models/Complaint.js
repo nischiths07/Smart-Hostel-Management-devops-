@@ -20,6 +20,8 @@ const complaintSchema = new mongoose.Schema({
         default: 'Pending'
     },
     adminRemarks: { type: String },
+    imageUrl: { type: String },
+    isConfirmedByStudent: { type: Boolean, default: false },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Complaint', complaintSchema);
